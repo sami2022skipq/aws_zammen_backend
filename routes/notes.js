@@ -166,13 +166,13 @@ router.delete('/deletenote/:id', fetchuser, async (req, res) => {
 })
 
 // fetch all public listings
-router.get('/fetchallnotesPublic', fetchuser, async (req, res) => {
+router.get('/fetchallnotesPublic', async (req, res) => {
 
     try {
         const notes = await Note.find(this.all)
         // filtering adds that are not from the current user logged in 
-        const filter = notes.filter((note) => note.user.toString() !== req.user.id)
-        res.json(filter)
+        // const filter = notes.filter((note) => note.user.toString() !== req.user.id)
+        res.json(notes)
 
     } catch (error) {
 
