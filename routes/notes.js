@@ -182,5 +182,24 @@ router.get('/fetchallnotesPublic', async (req, res) => {
     }
 })
 
+// Route 5: Get a single note
+router.get('/getanadd/:id', fetchuser, async (req, res) => {
+
+
+    try {
+        // Find the note to be updated and update it
+
+        let note = await Note.findById(req.params.id)
+
+        if (!note) { return res.status(404).send("Not Found") }
+        res.status(200).json(note)
+       
+    } catch (error) {
+        console.log("here is the error ", error.message)
+        res.status(500).send("Internal Server error ")
+
+
+    }
+})
 
 module.exports = router
